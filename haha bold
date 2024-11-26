@@ -1,0 +1,224 @@
+Task #1: Update Code Style for Better Consistency
+Ensure consistent indentation, spacing, and proper use of braces and line breaks.
+Refactored Code Snippet:
+java
+কোড কপি করুন
+import java.io.*;
+import java.util.*;
+
+public class EmployeeManager {
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("No arguments provided. Please provide an argument.");
+            return;
+        }
+
+        String operation = args[0];
+
+        if (operation.equals("l")) {
+            loadAndPrintEmployees();
+        } else if (operation.equals("s")) {
+            printRandomEmployee();
+        } else if (operation.startsWith("+")) {
+            addEmployee(operation.substring(1));
+        } else if (operation.startsWith("?")) {
+            searchEmployee(operation.substring(1));
+        } else if (operation.equals("c")) {
+            countWords();
+        } else if (operation.startsWith("u")) {
+            updateEmployee(operation.substring(1));
+        } else if (operation.startsWith("d")) {
+            deleteEmployee(operation.substring(1));
+        } else {
+            System.out.println("Invalid argument provided.");
+        }
+    }
+
+    private static void loadAndPrintEmployees() {
+        System.out.println("Loading data...");
+        try (BufferedReader reader = new BufferedReader(new FileReader("employees.txt"))) {
+            String line = reader.readLine();
+            if (line != null) {
+                String[] employees = line.split(",");
+                for (String employee : employees) {
+                    System.out.println(employee.trim());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading employees file: " + e.getMessage());
+        }
+        System.out.println("Data Loaded.");
+    }
+
+    // Other methods...
+}
+Changes:
+Consistent indentation and spacing.
+Proper braces for if-else blocks.
+Git Commands:
+bash
+কোড কপি করুন
+git add EmployeeManager.java
+git commit -m "Task #1: Update Code Style for Better Consistency"
+git checkout main
+git merge task-1
+Task #2: Early Termination for Invalid Argument Count
+Add a check to ensure at least one argument is passed.
+Refactored Code Snippet:
+java
+কোড কপি করুন
+public static void main(String[] args) {
+    if (args.length == 0) {
+        System.out.println("Error: No arguments provided. Please pass at least one argument.");
+        return;
+    }
+    // Existing logic...
+}
+Task #3: Improve Variable Names
+Use meaningful names like employees, filePath, etc.
+Refactored Code Snippet:
+java
+কোড কপি করুন
+String[] employees = data.split(",");
+for (String employee : employees) {
+    System.out.println(employee.trim());
+}
+Task #4: Refactor File Read/Write Logic
+Create reusable methods for reading and writing to the file.
+Refactored Code:
+java
+কোড কপি করুন
+private static String readFromFile(String filePath) throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        return reader.readLine();
+    }
+}
+
+private static void writeToFile(String filePath, String content) throws IOException {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+        writer.write(content);
+    }
+}
+Usage in Existing Code:
+java
+কোড কপি করুন
+String filePath = "employees.txt";
+String content = readFromFile(filePath);
+writeToFile(filePath, updatedContent);
+Remaining Tasks (Overview)
+Task #5: Create a Constants.java file:
+java
+কোড কপি করুন
+public class Constants {
+    public static final String FILE_PATH = "employees.txt";
+}
+Task #6: Remove unnecessary temporary variables.
+Task #7: Simplify search logic.
+Task #8: Simplify word count logic.
+Task #9: Add better error handling.
+Task #10: Add comments and improve method/variable names.
+Version Control Best Practices
+Create a separate branch for each task.
+Write meaningful commit messages.
+Test the code after each change.
+Merge branches back into main after completing tasks.
+Let me know if you want specific solutions for the remaining tasks!
+
+
+
+
+Code Style: Consistent indentation, spacing, and braces.
+Error Handling: Early termination for missing arguments and handling invalid commands.
+Readable Variables: Replaced single-letter variables with meaningful names.
+Modular Code: Reused readFromFile and writeToFile methods to reduce redundancy.
+Constants: Used Constants.java for all string literals.
+Simplified Logic:
+Simplified word counting logic.
+Improved search operation logic.
+
+
+
+Task #6: Remove Temporary Variables
+Goal: Eliminate unnecessary temporary variables to simplify the code.
+What was done:
+Removed unused or redundant variables in loops and file processing.
+Used String.join and Arrays.asList directly instead of creating intermediate variables.
+Example:
+
+java
+কোড কপি করুন
+String[] employees = employeeData.split(",");
+List<String> updatedEmployees = new ArrayList<>(Arrays.asList(employees));
+Task #7: Simplify Search Operation
+Goal: Remove the done variable and simplify the logic for searching an employee.
+What was done:
+Replaced the loop with a direct List.contains call for clarity and conciseness.
+Example:
+
+java
+কোড কপি করুন
+if (Arrays.asList(employeeData.split(",")).contains(employeeName)) {
+    System.out.println(Constants.EMPLOYEE_FOUND);
+} else {
+    System.out.println("Employee not found.");
+}
+
+
+
+Task #7: Simplify Search Operation
+Goal: Remove the done variable and simplify the logic for searching an employee.
+What was done:
+Replaced the loop with a direct List.contains call for clarity and conciseness.
+Example:
+
+java
+কোড কপি করুন
+if (Arrays.asList(employeeData.split(",")).contains(employeeName)) {
+    System.out.println(Constants.EMPLOYEE_FOUND);
+} else {
+    System.out.println("Employee not found.");
+}
+Task #8: Simplify Count Logic
+Goal: Simplify the logic for counting words and characters in the employee list.
+What was done:
+Counted the number of employees using split.length.
+Counted characters directly by removing spaces from the string.
+Example:
+
+java
+কোড কপি করুন
+int wordCount = employees.length;
+int characterCount = employeeData.replaceAll("\\s", "").length();
+Task #9: Handle Invalid Arguments
+Goal: Provide feedback for unrecognized or invalid commands.
+What was done:
+Added a default case to the switch statement to print an error message when the argument is invalid.
+Example:
+
+java
+কোড কপি করুন
+default:
+    System.out.println(Constants.ERROR_INVALID_ARGUMENT);
+Task #10: Add Comments and Improve Naming
+Goal: Improve readability with clear comments and better variable/method names.
+What was done:
+Added comments before each method to explain its purpose.
+Renamed methods like searchEmployee and deleteEmployee for clarity.
+Example:
+
+java
+কোড কপি করুন
+/**
+ * Searches for an employee in the list and prints a response.
+ * @param employeeName The name of the employee to search for.
+ */
+private static void searchEmployee(String employeeName) {
+    // Logic here...
+}
+Summary of Key Changes
+Code Style: Cleaner and more readable structure.
+Error Handling: Proper messages for missing and invalid arguments.
+Reusable Methods: Centralized file handling logic.
+Constants: Easy-to-maintain constant values.
+Logic Simplification: Cleaner loops and streamlined operations.
+Comments: Better documentation for easier understanding.
