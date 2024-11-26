@@ -1,6 +1,71 @@
 John_Doe, Jane Smith,Alice Johnson,Bob Brown
 https://github.com/omarfaruqe/CSE2142WPCL2024/blob/main/EmployeeManager.java
 
+java EmployeeManager l
+Display a Random Employee
+Command: s
+Description: Displays the name of a randomly selected employee from the file.
+Example Usage:
+কোড কপি করুন
+java EmployeeManager s
+
+Add a New Employee
+Command: +<employee_name>
+Description: Adds a new employee to the list.
+<employee_name> should be replaced with the name of the employee to add.
+Example Usage:
+কোড কপি করুন
+java EmployeeManager +Michael Scott
+
+Search for an Employee
+Command: ?<employee_name>
+Description: Searches for an employee by name.
+<employee_name> should be replaced with the name to search for.
+Example Usage:
+ruby
+কোড কপি করুন
+java EmployeeManager ?John_Doe
+
+Count Employees and Characters
+Command: c
+Description: Counts the number of employees (words) and total characters (excluding spaces) in the file.
+Example Usage:
+r
+কোড কপি করুন
+java EmployeeManager c
+
+Update an Employee's Name
+Command: u<employee_name>
+Description: Updates an employee's name to Updated.
+<employee_name> should be replaced with the name of the employee to update.
+Example Usage:
+কোড কপি করুন
+java EmployeeManager uJane Smith
+
+Delete an Employee
+Command: d<employee_name>
+Description: Deletes an employee from the list.
+<employee_name> should be replaced with the name of the employee to delete.
+Example Usage:
+mathematica
+কোড কপি করুন
+java EmployeeManager dBob Brown
+
+Invalid Command Handling
+Command: Any unrecognized input.
+Description: Prints an error message for invalid commands.
+Example Usage:
+কোড কপি করুন
+java EmployeeManager xyz
+Output:
+javascript
+কোড কপি করুন
+Error: Invalid argument provided.
+
+javac EmployeeManager.java Constants.java
+in src te hahaha
+
+
 import java.io.*;
 import java.util.*;
 
